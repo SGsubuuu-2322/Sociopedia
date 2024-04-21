@@ -9,6 +9,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
+import authRoutes from "./routes/auth.js";
 
 // Configuration for our express server app...
 
@@ -38,9 +39,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Auth routing
+// Routes with files...
 
-app.post("/auth/route", upload.single("picture"), register);
+app.post("/auth/register", upload.single("picture"), register);
+
+// Routes...
+app.use("/auth", authRoutes);
 
 // MongoDB setup...
 const PORT = process.env.SERVER_PORT || 6001;
