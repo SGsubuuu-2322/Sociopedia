@@ -37,3 +37,21 @@ export const register = async (req, res) => {
     res.status(500).json({ Error: err.message });
   }
 };
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.status(400).json({ msg: "User doesn't exist.." });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.pasword);
+    if (!isMatch) {
+      res.status(400).json({ msg: "Invalid credentials..." });
+    }
+  } catch (err) {
+    res.status(500).json({ Error: err.message });
+  }
+};
