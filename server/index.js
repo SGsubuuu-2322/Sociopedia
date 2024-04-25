@@ -11,6 +11,8 @@ import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
+import postRoutes from "./routes/posts.js";
+import { verifyToken } from "./middleware/auth.js";
 
 // Configuration for our express server app...
 
@@ -42,10 +44,12 @@ const upload = multer({ storage });
 
 // Routes with files...
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"));
 
 // Routes...
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
+app.use("/posts", postRoutes);
 
 // MongoDB setup...
 const PORT = process.env.SERVER_PORT || 6001;
