@@ -2,7 +2,7 @@ import Post from "../models/Posts.js";
 import User from "../models/User.js";
 
 // Create operation...
-export const createPost = async (req, res) => {
+export const createPosts = async (req, res) => {
   try {
     const { userId, description, picturePath } = req.body;
     const user = await User.findById(userId);
