@@ -24,9 +24,19 @@ export const createPost = async (req, res) => {
   }
 };
 
-export const getFeedPosts = async (req, res) => {
+export const getPostFeeds = async (req, res) => {
   try {
     const posts = await Post.find();
+    return res.status(201).json(posts);
+  } catch (err) {
+    return res.status(404).json({ message: err.message });
+  }
+};
+
+export const getUserPosts = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const posts = await Post.find({ userId });
     return res.status(201).json(posts);
   } catch (err) {
     return res.status(404).json({ message: err.message });
