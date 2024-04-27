@@ -23,3 +23,12 @@ export const createPost = async (req, res) => {
     return res.status(409).json({ message: err.message });
   }
 };
+
+export const getFeedPosts = async (req, res) => {
+  try {
+    const posts = await Post.find();
+    return res.status(201).json(posts);
+  } catch (err) {
+    return res.status(404).json({ message: err.message });
+  }
+};
