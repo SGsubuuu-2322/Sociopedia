@@ -64,7 +64,7 @@ mongoose
 
     // Add data one time...
 
-    User.insertMany(users);
-    Posts.insertMany(posts);
+    // User.insertMany(users);
+    // Posts.insertMany(posts);
   })
   .catch((err) => console.log(`Error connecting to database: ${err}`));
