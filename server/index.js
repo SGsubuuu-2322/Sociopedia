@@ -14,6 +14,9 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
 import postRoutes from "./routes/posts.js";
 import { verifyToken } from "./middleware/auth.js";
+import Posts from "./models/Posts.js";
+import User from "./models/User.js";
+import { users, posts } from "./data/index.js";
 
 // Configuration for our express server app...
 
@@ -58,5 +61,10 @@ mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+    // Add data one time...
+
+    User.insertMany(users);
+    Posts.insertMany(posts);
   })
   .catch((err) => console.log(`Error connecting to database: ${err}`));
