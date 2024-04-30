@@ -89,6 +89,30 @@ const Navbar = () => {
           <Message sx={{ fontSize: "25px" }} />
           <Notifications sx={{ fontSize: "25" }} />
           <Help sx={{ fontSize: "25" }} />
+          <FormControl variant="standard" value={fullName}>
+            <Select
+              value={fullName}
+              sx={{
+                backgroundColor: neutralLight,
+                width: "150px",
+                borderRadius: "0.25rem",
+                p: "0.25rem 1rem",
+                "& .MuiSvg-Icon-root": {
+                  pr: "0.25rem",
+                  width: "3rem",
+                },
+                "& .MuiSelect-Select:focus": {
+                  backgroundColor: neutralLight,
+                },
+              }}
+              input={<InputBase />}
+            >
+              <MenuItem value={fullName}>
+                <Typography>{fullName}</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => dispatch(setLogout())}>Logout</MenuItem>
+            </Select>
+          </FormControl>
         </FlexBetween>
       ) : (
         <IconButton></IconButton>
