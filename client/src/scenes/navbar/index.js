@@ -119,7 +119,7 @@ const Navbar = () => {
         <IconButton
           onClick={() => setisMobileMenuToggled(!isMobileMenuToggled)}
         >
-          <menu />
+          <Menu />
         </IconButton>
       )}
 
